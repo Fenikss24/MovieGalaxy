@@ -1,8 +1,11 @@
 package com.example.starwars.data.remote
 
 import com.example.starwars.data.remote.response.ApiResponse
+import com.example.starwars.data.remote.response.MovieCrewResponse
+import com.example.starwars.data.remote.response.MovieDetailResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -21,4 +24,18 @@ interface ApiService {
         @Query(QUERY_API_KEY) api_key: String,
         @Query(QUERY_LANGUAGE) language: String? = LANGUAGE_ENG
     ): Single<ApiResponse>
+
+    @GET("3/movie/{movie_id}")
+    fun getMovieDetails(
+        @Path("movie_id") id: Int,
+        @Query(QUERY_LANGUAGE) language: String = LANGUAGE_ENG,
+        @Query(QUERY_API_KEY) key: String,
+    ): Single<MovieDetailResponse>
+
+    @GET("3/movie/{movie_id}/credits")
+    fun getCrewForMovie(
+        @Path(QUERY_MOVIE_ID) id: Int,
+        @Query(QUERY_API_KEY) api_key: String,
+        @Query(QUERY_LANGUAGE) language: String? = LANGUAGE_ENG
+    ): Single<MovieCrewResponse>
 }

@@ -1,7 +1,9 @@
 package com.example.starwars.data.remote.repository
 
 import com.example.starwars.data.remote.RemoteDataSource
+import com.example.starwars.domain.entities.Cast
 import com.example.starwars.domain.entities.Movie
+import com.example.starwars.domain.entities.MovieDetails
 import com.example.starwars.domain.repository.MovieRepository
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
@@ -23,5 +25,32 @@ class MovieRepositoryImpl @Inject constructor(
                 )
             }
         }
+    }
+
+    override fun getDetailMovie(id: Int): Single<MovieDetails> {
+        val castsSingle = dataSource.getCrewForMovie(id)
+        val movieDetailsSingle = dataSource.getDetailMovie(id)
+
+        return Single.zip(movieDetailsSingle, castsSingle) { responseResult, casts ->
+            MovieDetails(
+                id = responseResult.id,
+                title = responseResult.title,
+                poster_path = responseResult.poster_path,
+                casts = casts.castFromApi.map { castFromApi ->
+                    Cast(
+                        id = castFromApi.id,
+                        name = castFromApi.name,
+                        profile_path = castFromApi.profile_path,
+                        original_name = castFromApi.original_name
+                    )
+                },
+                release_date = responseResult.release_date,
+                overview = responseResult.overview,
+                runtime = responseResult.runtime,
+                original_title = responseResult.original_title,
+                vote_average = responseResult.vote_average
+            )
+        }
+
     }
 }

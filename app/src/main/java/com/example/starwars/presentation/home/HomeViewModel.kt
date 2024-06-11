@@ -24,6 +24,10 @@ class HomeViewModel @Inject constructor(
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
+    init {
+        refreshCinema()
+    }
+
     fun refreshCinema() {
         _isLoadingLiveData.value = true
         getMovieListUseCase.getPopularMovieList()
