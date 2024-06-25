@@ -4,6 +4,7 @@ import com.example.starwars.BuildConfig
 import com.example.starwars.data.remote.response.ApiResponse
 import com.example.starwars.data.remote.response.MovieCrewResponse
 import com.example.starwars.data.remote.response.MovieDetailResponse
+import com.example.starwars.data.remote.response.VideoResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
@@ -38,5 +39,9 @@ class RemoteDataSource @Inject constructor() {
 
     fun getCrewForMovie(id: Int): Single<MovieCrewResponse> {
         return retrofitService.getCrewForMovie(id, apikey, LANGUAGE_ENG)
+    }
+
+    fun getVideo(id: Int): Single<VideoResponse> {
+        return retrofitService.getVideo(id, apikey, LANGUAGE_ENG)
     }
 }

@@ -1,6 +1,7 @@
 package com.example.starwars.data.remote.repository
 
 import com.example.starwars.data.remote.RemoteDataSource
+import com.example.starwars.data.remote.response.VideoResponse
 import com.example.starwars.domain.entities.Cast
 import com.example.starwars.domain.entities.Movie
 import com.example.starwars.domain.entities.MovieDetails
@@ -52,5 +53,9 @@ class MovieRepositoryImpl @Inject constructor(
             )
         }
 
+    }
+
+    override fun getVideo(id: Int): Single<VideoResponse> {
+        return dataSource.getVideo(id)
     }
 }

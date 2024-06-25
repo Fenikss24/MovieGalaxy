@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.starwars.databinding.HomeFragmentBinding
@@ -14,7 +16,7 @@ import com.example.starwars.utils.subscribe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment: Fragment() {
+class HomeFragment : Fragment() {
     private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
@@ -42,8 +44,8 @@ class HomeFragment: Fragment() {
 
     private fun setAdapter(listMovie: List<Movie>) {
         val adapter = MovieAdapter(listMovie) {
-     //       val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it.id)
-       //     findNavController().navigate(action)
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it.id)
+            findNavController().navigate(action)
         }
 
         binding.recyclerView.layoutManager =
