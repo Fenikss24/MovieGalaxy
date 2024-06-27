@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.starwars.R
 import com.example.starwars.databinding.DetailsFragmentBinding
 import com.example.starwars.domain.entities.Cast
 import com.example.starwars.domain.entities.MovieDetails
@@ -58,10 +59,12 @@ class DetailsFragment : Fragment() {
         }
     }
 
+
     private fun setAllFields(movie: MovieDetails) {
+        binding.collapsingToolbar.title = movie.original_title
+        binding.collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(R.color.white))
         binding.textViewTitle.text = movie.original_title
         binding.textViewTime.text = "Release date:  ${movie.release_date}"
-//        binding.imageViewPoster.setImageResource(movie.poster_path.toInt())
         if (movie.runtime != null) {
             binding.textViewTime.text = "Runtime: ${movie.runtime.toString()}"
         } else {

@@ -12,12 +12,12 @@
 
         <ImageView
             android:id="@+id/poster"
-            android:layout_width="200dp"
-            android:layout_height="250dp"
+            android:layout_width="180dp"
+            android:layout_height="230dp"
             android:layout_margin="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title"
@@ -41,6 +41,13 @@
             app:layout_constraintTop_toBottomOf="@+id/poster"
             tools:text="Raiting"
             />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="202dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

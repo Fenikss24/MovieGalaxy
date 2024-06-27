@@ -21,7 +21,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,7 +48,11 @@ class HomeFragment : Fragment() {
         }
 
         binding.recyclerView.layoutManager =
-            GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
+            GridLayoutManager(
+                requireContext(), 2,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
         binding.recyclerView.adapter = adapter
     }
 

@@ -10,7 +10,8 @@
         android:id="@+id/profilePathImageView"
         android:layout_width="49dp"
         android:layout_height="49dp"
-        android:background="@color/primaryColor" />
+        android:scaleType="centerCrop"
+        android:background="@color/primaryColor"/>
 
     <TextView
         android:id="@+id/nameTextView"
