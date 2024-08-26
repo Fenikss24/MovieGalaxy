@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.14629629629629629" />
+        <entry key="app/src/main/res/drawable/cursor.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_empty_cast_avatar_24.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/ic_baseline_missed_video_call_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_navigation.xml" value="0.29797515869140634" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1407035175879397" />
@@ -18,7 +20,7 @@
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_search_result.xml" value="0.20380434782608695" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.2658514492753623" />
-        <entry key="app/src/main/res/layout/movie_item.xml" value="0.3498733520507813" />
+        <entry key="app/src/main/res/layout/movie_item.xml" value="0.125" />
         <entry key="app/src/main/res/layout/second.xml" value="0.1" />
       </map>
     </option>

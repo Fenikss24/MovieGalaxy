@@ -1,10 +1,7 @@
 package com.example.starwars.presentation.home
 
 import android.app.appsearch.SearchResult
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.starwars.domain.entities.Movie
 import com.example.starwars.domain.usecases.GetMovieListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,9 +15,14 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getMovieListUseCase: GetMovieListUseCase,
 ) : ViewModel() {
+    private var filterText = MutableLiveData("")
 
     private val _listPopularMoviesLiveData = MutableLiveData<List<Movie>>()
-    val listPopularMoviesLiveData: LiveData<List<Movie>> = _listPopularMoviesLiveData
+    val listPopularMoviesLiveData: LiveData<List<Movie>> =
+        MediatorLiveData<List<Movie>>().apply {
+            addSource(_listPopularMoviesLiveData) { value = filterMovies() }
+            addSource(filterText) { value = filterMovies() }
+        }
 
     private val _isLoadingLiveData = MutableLiveData<Boolean>()
     val isLoadingLiveData: LiveData<Boolean> = _isLoadingLiveData
@@ -45,6 +47,17 @@ class HomeViewModel @Inject constructor(
                 disposables.add(it)
             }
 
+    }
+
+    private fun filterMovies(): List<Movie> {
+        return _listPopularMoviesLiveData.value?.filter {
+            it.title.contains(filterText.value ?: "",
+                true)
+        } ?: emptyList()
+    }
+
+    fun filter(text: String) {
+        filterText.value = text
     }
 
     override fun onCleared() {

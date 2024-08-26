@@ -71,6 +71,8 @@ dependencies {
     //Shape
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    implementation 'androidx.core:core-ktx:1.7.0'
+
     // Player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
