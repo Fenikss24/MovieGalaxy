@@ -7,6 +7,7 @@ import com.example.starwars.R
 import com.example.starwars.databinding.MovieItemBinding
 import com.example.starwars.domain.entities.Movie
 import com.example.starwars.utils.loadImage
+import kotlin.math.roundToInt
 
 class MovieAdapter(
     private val dataCinema: List<Movie>,
@@ -36,7 +37,7 @@ class MovieAdapter(
 
         fun bind(model: Movie) {
             binding.title.text = model.title
-            binding.raiting.text = model.vote_average.toString()
+            binding.raiting.text = String.format("%.1f", model.vote_average)
             loadImage(
                 itemView.context,
                 URL_ADDRESS + model.poster_path,
