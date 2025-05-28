@@ -16,8 +16,8 @@ interface ApiService {
         private const val QUERY_API_KEY = "api_key"
         private const val QUERY_MOVIE_ID = "movie_id"
         private const val LANGUAGE_ENG = "eng-ENG"
-        private const val PAGE = "page"
-        private const val QUERY_PARAM_LIST_OF_GENRE = "with_genres"
+ //       private const val PAGE = "page"
+ //       private const val QUERY_PARAM_LIST_OF_GENRE = "with_genres"
     }
 
     @GET("3/movie/popular")
