@@ -1,6 +1,6 @@
 package com.example.moviegalaxy.data.remote.repository
 
-import com.example.moviegalaxy.data.remote.RemoteDataSource
+import com.example.moviegalaxy.data.remote.ApiService
 import com.example.moviegalaxy.data.remote.response.VideoResponse
 import com.example.moviegalaxy.domain.entities.Cast
 import com.example.moviegalaxy.domain.entities.Movie
@@ -10,11 +10,11 @@ import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
-    private val dataSource: RemoteDataSource,
+    private val apiService: ApiService,
 ) : MovieRepository {
 
     override fun getPopularMovieList(): Single<List<Movie>> {
-        return dataSource.getPopular().map { responseResult ->
+        return apiService.getPopular(apikey, LANGUAGE_ENG).map { responseResult ->
             responseResult.results.map { movieFromApi ->
                 Movie(
                     id = movieFromApi.id,
@@ -29,8 +29,8 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override fun getDetailMovie(id: Int): Single<MovieDetails> {
-        val castsSingle = dataSource.getCrewForMovie(id)
-        val movieDetailsSingle = dataSource.getDetailMovie(id)
+        val castsSingle = apiService.getCrewForMovie(id, apikey)
+        val movieDetailsSingle = apiService.getMovieDetails(id, LANGUAGE_ENG, apikey)
 
         return Single.zip(movieDetailsSingle, castsSingle) { responseResult, casts ->
             MovieDetails(
@@ -56,6 +56,11 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override fun getVideo(id: Int): Single<VideoResponse> {
-        return dataSource.getVideo(id)
+        return apiService.getVideo(id, apikey)
+    }
+    companion object {
+        private const val LANGUAGE_ENG = "eng-ENG"
+        private const val BASE_URL = "https://api.themoviedb.org"
+        private val apikey = "6acceb55053f1e220dfd5566bcb378dc"
     }
 }
